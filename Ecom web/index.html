@@ -1,0 +1,817 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>WishCustoms</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body 
+{
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+  animation: float 20s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(30px, -30px) rotate(120deg); }
+  66% { transform: translate(-20px, 20px) rotate(240deg); }
+}
+
+header 
+{
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 24px 32px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+header h1 
+{
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 10px rgba(102, 126, 234, 0.2);
+  position: relative;
+}
+
+header h1::after {
+  content: '✨';
+  position: absolute;
+  right: -30px;
+  top: -5px;
+  font-size: 20px;
+  animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+header input 
+{
+  padding: 14px 24px;
+  width: 320px;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, #e0e7ff, #ddd6fe) border-box;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+header input:focus {
+  outline: none;
+  background: white;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.2);
+  transform: translateY(-2px);
+}
+
+header input::placeholder {
+  color: #94a3b8;
+}
+
+.container 
+{
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.container > h2 {
+  color: white;
+  font-size: 38px;
+  margin-bottom: 40px;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  position: relative;
+  display: inline-block;
+}
+
+.container > h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(90deg, white 0%, transparent 100%);
+  border-radius: 2px;
+}
+
+.products 
+{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+  gap: 30px;
+}
+
+.card 
+{
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.card-top 
+{
+  background: linear-gradient(135deg, #a8c0ff 0%, #c8b6ff 100%);
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 72px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-top::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+  animation: shimmer 4s infinite;
+}
+
+.card-top::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.1) 100%);
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-30%, -30%) scale(1.2); }
+}
+
+.card-body 
+{
+  padding: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.card-body small {
+  color: #764ba2;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  background: linear-gradient(135deg, #e9d5ff 0%, #ddd6fe 100%);
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.card-body h3 
+{
+  margin: 12px 0 14px 0;
+  color: #1e293b;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.card-body p 
+{
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.price {
+  color: #667eea;
+  font-size: 26px;
+  font-weight: 800;
+  margin: 14px 0;
+  letter-spacing: -0.5px;
+}
+
+button {
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.select-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  position: relative;
+  z-index: 1;
+}
+
+.select-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+}
+
+.cart 
+{
+  position: fixed;
+  right: 30px;
+  top: 100px;
+  background: white;
+  padding: 16px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 10px 40px rgba(0,0,0,.2);
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e293b;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 99;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.cart:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 15px 50px rgba(0,0,0,.3);
+}
+
+#cartCount {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 50%;
+  padding: 6px 12px;
+  font-size: 14px;
+  margin-left: 10px;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.cart-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 420px;
+  height: 100%;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: -12px 0 50px rgba(0,0,0,.2);
+  padding: 35px;
+  display: none;
+  flex-direction: column;
+  z-index: 1000;
+  overflow-y: auto;
+  animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.cart-panel h2 {
+  color: #1e293b;
+  font-size: 28px;
+  margin: 0 0 25px 0;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.cart-panel h3 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 26px;
+  margin: 25px 0;
+  font-weight: 800;
+}
+
+.cart-panel h4 {
+  color: #475569;
+  font-size: 16px;
+  margin: 25px 0 12px 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cart-panel input[type="text"] {
+  width: 100%;
+  padding: 14px 16px;
+  margin: 0 0 16px 0;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.cart-panel input[type="text"]:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+  transform: translateY(-2px);
+}
+
+.cart-panel label {
+  display: block;
+  margin: 12px 0;
+  color: #475569;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 16px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  background: white;
+  border: 2px solid #e2e8f0;
+}
+
+.cart-panel label:hover {
+  background: linear-gradient(135deg, #f0f4ff 0%, #f5f3ff 100%);
+  border-color: #c7d2fe;
+}
+
+.cart-panel input[type="radio"] {
+  margin-right: 12px;
+  accent-color: #667eea;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  background: white;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  border: 2px solid #f1f5f9;
+  transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+  border-color: #c7d2fe;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+  transform: translateX(-4px);
+}
+
+.cart-item span {
+  flex: 1;
+  color: #1e293b;
+  font-size: 15px;
+}
+
+.cart-item strong {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.cart-item button {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.cart-item button:hover {
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+}
+
+.add-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 18px 36px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 17px;
+  width: 100%;
+  margin-top: 25px;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  position: relative;
+  z-index: 1;
+}
+
+.add-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+}
+
+.add-btn:disabled {
+  background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+hr {
+  border: none;
+  border-top: 2px solid #e2e8f0;
+  margin: 25px 0;
+}
+
+footer {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: white;
+  text-align: center;
+  padding: 35px;
+  margin-top: 80px;
+  font-size: 15px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.3);
+}
+
+footer p {
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.close-btn {
+  background: #f1f5f9;
+  border: none;
+  font-size: 24px;
+  color: #64748b;
+  cursor: pointer;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  font-weight: 700;
+}
+
+.close-btn:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+  transform: rotate(90deg);
+}
+
+@media (max-width: 768px) {
+  .cart-panel {
+    width: 100%;
+  }
+  
+  header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  header input {
+    width: 100%;
+  }
+  
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+  }
+  
+  .container > h2 {
+    font-size: 30px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>WishCustoms</h1>
+  <input id="search" placeholder="Search products..." />
+</header>
+
+<div class="cart" onclick="toggleCart()">
+  🛒 <span id="cartCount">0</span>
+</div>
+
+<div class="cart-panel" id="cartPanel">
+
+  <div style="display:flex; justify-content:space-between; align-items:center">
+    <h2>Shopping Cart</h2>
+    <button onclick="toggleCart()" class="close-btn">
+      ✖
+    </button>
+  </div>
+
+  <div id="cartItems"></div>
+  <hr>
+  <h3>Total: ₹<span id="total">0</span></h3>
+  
+  <h4>Delivery Address</h4>
+  <input id="addrName" placeholder="Full Name" oninput="updateCheckoutState()">
+  
+  <input id="addrLine" placeholder="Address Line" oninput="updateCheckoutState()">
+  
+  <input id="addrCity" placeholder="City" oninput="updateCheckoutState()">
+  
+  <input id="addrPin" placeholder="Pincode" oninput="updateCheckoutState()">
+
+  <h4>Payment Method</h4>
+  <label>
+    <input type="radio" name="paymentMethod" value="Online" onchange="updateCheckoutState()">
+    💳 Online Payment
+  </label>
+  <label>
+    <input type="radio" name="paymentMethod" value="COD" onchange="updateCheckoutState()">
+    💵 Cash on Delivery
+  </label>
+
+  <button 
+    id="checkoutBtn" 
+    class="add-btn" 
+    onclick="placeOrder()" 
+    disabled
+  >
+    🎉 Complete Order
+  </button>
+
+</div>
+
+<div class="container">
+  <h2>Featured Products</h2>
+  <div class="products" id="products"></div>
+</div>
+
+<footer>
+  <p>© 2024 WishCustoms - Customize Your Dreams ✨</p>
+</footer>
+
+<script>
+const products = [
+  { id:1, name:"Custom T-Shirt", price:499, image:"👕", category:"Clothing" },
+  { id:2, name:"Personalised Gift", price:499, image:"📦", category:"Special Occasions" },
+  { id:3, name:"Photo Coffee Mug", price:449, image:"☕", category:"Kitchen" },
+  { id:4, name:"Custom Phone Case", price:499, image:"📱", category:"Accessories" },
+];
+
+const productsDiv = document.getElementById("products");
+
+function renderProducts(list)
+{
+  productsDiv.innerHTML = "";
+  list.forEach(p => {
+    productsDiv.innerHTML += `
+      <div class="card">
+        <div class="card-top">${p.image}</div>
+        <div class="card-body">
+          <small>${p.category}</small>
+          <h3>${p.name}</h3>
+          <div class="price">₹${p.price}</div>
+          <button class="select-btn" onclick="openCustomizer(${p.id})">Customize Now</button>
+        </div>
+      </div>`;
+  });
+}
+
+function addToCart(id){
+  const item = cart.find(i => i.id === id);
+  if(item) item.qty++;
+  else {
+    const p = products.find(x => x.id === id);
+    cart.push({ ...p, qty:1 });
+  }
+  updateCart();
+}
+
+function updateCart(){
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const cartItems = document.getElementById("cartItems");
+  cartItems.innerHTML = "";
+
+  let total = 0;
+  let count = 0;
+
+  if(cart.length === 0){
+    cartItems.innerHTML = "<p style='color: #94a3b8; text-align: center; padding: 30px; font-size: 15px;'>Your cart is empty 🛍️</p>";
+  }
+
+  cart.forEach(i => {
+    total += (i.price || 499) * (i.qty || 1);
+    count += i.qty || 1;
+
+    cartItems.innerHTML += `
+      <div class="cart-item">
+        <span>
+          <strong>${i.product}</strong><br>
+          <small style="color: #64748b;">Color: ${i.color || ""}</small>
+        </span>
+        <button onclick="removeFromCart(${i.id})">
+          ✖
+        </button>
+      </div>`;
+  });
+
+  document.getElementById("total").innerText = total;
+  document.getElementById("cartCount").innerText = count;
+  updateCheckoutState();
+}
+
+function toggleCart(){
+  const panel = document.getElementById("cartPanel");
+  panel.style.display = panel.style.display === "flex" ? "none" : "flex";
+  updateCheckoutState();
+}
+
+document.getElementById("search").addEventListener("input", e => {
+  const q = e.target.value.toLowerCase();
+  renderProducts(products.filter(p =>
+    p.name.toLowerCase().includes(q) ||
+    p.category.toLowerCase().includes(q)
+  ));
+});
+
+function placeOrder() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  if (cart.length === 0) {
+    alert("⚠️ Your cart is empty. Add items before checkout.");
+    return;
+  }
+
+  const btn = document.getElementById("checkoutBtn");
+  if (btn.disabled) {
+    alert("⚠️ Please complete address and select a payment method.");
+    return;
+  }
+
+  const order = {
+    address: {
+      name: addrName.value,
+      address: addrLine.value,
+      city: addrCity.value,
+      pincode: addrPin.value
+    },
+    paymentMethod: document.querySelector(
+      'input[name="paymentMethod"]:checked'
+    ).value,
+    items: cart,
+    status: "Order Placed (Demo)",
+    time: new Date().toISOString()
+  };
+
+  fetch("/order", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(order)
+  });
+
+  alert("✅ Order placed successfully!");
+
+  localStorage.removeItem("cart");
+  updateCart();
+  toggleCart();
+}
+
+renderProducts(products);
+updateCart();
+
+window.removeFromCart = function (id) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart = cart.filter(item => item.id !== id);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCart();
+};
+
+function updateCheckoutState() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const name = document.getElementById("addrName")?.value.trim();
+  const addr = document.getElementById("addrLine")?.value.trim();
+  const city = document.getElementById("addrCity")?.value.trim();
+  const pin = document.getElementById("addrPin")?.value.trim();
+
+  const paymentSelected = document.querySelector(
+    'input[name="paymentMethod"]:checked'
+  );
+
+  const btn = document.getElementById("checkoutBtn");
+  if (!btn) return;
+
+  const cartOk = cart.length > 0;
+  const addressOk = name && addr && city && pin;
+  const paymentOk = !!paymentSelected;
+
+  btn.disabled = !(cartOk && addressOk && paymentOk);
+}
+</script>
+<script src="script.js"></script>
+
+</body>
+</html>
