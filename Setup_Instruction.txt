@@ -1,0 +1,5 @@
+1.)Make sure you have Node.js(including npm) installed on your system.
+2.)If you are running it first time open command prompt(or terminal) in the project's directory and run command " npm install " for initial setup.
+
+After this either use the .bat file shortcut to start the local hosting and visit the website at localhost:3000 (in case web browser doesn't open the page on running the .bat).
+Incase the .bat file shortcut does not operate then use the actual .bat file inside "Ecom web" directory to start the webpage.
